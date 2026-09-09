@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Testly — Turn your notes into your next test</title>
+<meta name="description" content="Upload photos of your notes or homework and Testly builds a practice test from exactly what's in them." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <button class="logo" id="logo-home" aria-label="Testly home">
+    <span class="logo-mark" aria-hidden="true"></span>
+    <span class="logo-word">Testly</span>
+  </button>
+  <div class="header-actions">
+    <button class="btn btn-ghost btn-small" id="history-btn" type="button" hidden>My tests</button>
+    <button class="btn btn-ghost btn-small" id="settings-btn" type="button">API key</button>
+    <button class="btn btn-secondary btn-small" id="sign-in-btn" type="button" hidden>Sign in with Google</button>
+    <div class="account-chip" id="account-chip" hidden>
+      <span class="account-avatar" id="account-avatar"></span>
+      <span class="account-name" id="account-name"></span>
+      <button class="account-signout" id="sign-out-btn" type="button" aria-label="Sign out">✕</button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ===================== LANDING ===================== -->
+  <section class="view" id="view-landing">
+    <div class="hero">
+      <div class="hero-copy">
+        <h1>Turn your notes into your next test.</h1>
+        <p class="hero-tagline">
+          Snap a photo of your notes, a worksheet, or a study guide. Testly reads it
+          and builds a practice test from exactly what's on the page — nothing more,
+          nothing invented.
+        </p>
+        <button class="btn btn-primary btn-large" id="cta-create-test">Create a Test</button>
+        <p class="hero-microcopy">No account needed. Your notes stay in your browser.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 380" class="hero-svg">
+          <rect x="18" y="26" width="190" height="260" rx="14" fill="#FFFFFF" stroke="#E4E7EC" stroke-width="2"/>
+          <line x1="46" y1="76" x2="180" y2="76" stroke="#DDE1E7" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="102" x2="180" y2="102" stroke="#DDE1E7" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="128" x2="150" y2="128" stroke="#DDE1E7" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="168" x2="180" y2="168" stroke="#DDE1E7" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="194" x2="180" y2="194" stroke="#DDE1E7" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="220" x2="130" y2="220" stroke="#DDE1E7" stroke-width="6" stroke-linecap="round"/>
+          <path d="M170 40 L400 100" stroke="#0E7C66" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" fill="none"/>
+          <g transform="translate(210,70)">
+            <rect x="0" y="0" width="196" height="230" rx="16" fill="#FFFFFF" stroke="#0E7C66" stroke-width="2.5"/>
+            <rect x="0" y="0" width="196" height="46" rx="16" fill="#E3F5EF"/>
+            <rect x="0" y="30" width="196" height="16" fill="#E3F5EF"/>
+            <text x="20" y="30" font-family="Work Sans, sans-serif" font-size="13" font-weight="600" fill="#0E7C66">Question 4 of 12</text>
+            <line x1="20" y1="74" x2="176" y2="74" stroke="#161A1F" stroke-width="4" stroke-linecap="round"/>
+            <line x1="20" y1="90" x2="140" y2="90" stroke="#161A1F" stroke-width="4" stroke-linecap="round"/>
+            <g>
+              <rect x="20" y="118" width="156" height="30" rx="15" fill="#F6F7F9" stroke="#E4E7EC" stroke-width="1.5"/>
+              <circle cx="34" cy="133" r="6" fill="none" stroke="#8991A0" stroke-width="1.5"/>
+              <rect x="20" y="156" width="156" height="30" rx="15" fill="#E3F5EF" stroke="#0E7C66" stroke-width="1.5"/>
+              <circle cx="34" cy="171" r="6" fill="#0E7C66"/>
+              <rect x="20" y="194" width="156" height="30" rx="15" fill="#F6F7F9" stroke="#E4E7EC" stroke-width="1.5"/>
+              <circle cx="34" cy="209" r="6" fill="none" stroke="#8991A0" stroke-width="1.5"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="how-it-works">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num">1</span>
+          <h3>Upload your material</h3>
+          <p>Photos of handwritten notes, printed worksheets, or PDFs — Testly reads them directly.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">2</span>
+          <h3>Get a test built just for you</h3>
+          <p>A mix of multiple choice, true/false, and short answer, drawn only from what you uploaded.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">3</span>
+          <h3>Practice, then focus on gaps</h3>
+          <p>See what you missed by topic, then retest on just your weak areas.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== UPLOAD ===================== -->
+  <section class="view" id="view-upload" hidden>
+    <div class="page-head">
+      <h1>Add your study material</h1>
+      <p class="page-sub">Upload clear photos of your notes or homework, or a PDF. The test will only cover what's in these files.</p>
+    </div>
+
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload files">
+      <input type="file" id="file-input" accept="image/*,application/pdf" multiple hidden />
+      <svg class="dropzone-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 26V6M20 6L13 13M20 6L27 13" stroke="#0E7C66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 26V31C6 32.6569 7.34315 34 9 34H31C32.6569 34 34 32.6569 34 31V26" stroke="#0E7C66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="dropzone-title">Drag files here, or click to browse</p>
+      <p class="dropzone-sub">Images (JPG, PNG, HEIC) or PDF</p>
+    </div>
+
+    <div class="file-list" id="file-list" hidden></div>
+
+    <div class="upload-options">
+      <label for="question-count">Number of questions</label>
+      <select id="question-count">
+        <option value="8">8</option>
+        <option value="12" selected>12</option>
+        <option value="16">16</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+
+    <div id="upload-error" class="error-banner" hidden></div>
+
+    <div class="upload-actions">
+      <button class="btn btn-secondary" id="back-to-landing">Back</button>
+      <button class="btn btn-primary btn-large" id="generate-test-btn" disabled>Generate My Test</button>
+    </div>
+  </section>
+
+  <!-- ===================== GENERATING ===================== -->
+  <section class="view" id="view-generating" hidden>
+    <div class="generating-box">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2 id="generating-title">Reading your material…</h2>
+      <p id="generating-sub" class="page-sub">This usually takes a few seconds.</p>
+    </div>
+  </section>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section class="view" id="view-quiz" hidden>
+    <div class="quiz-wrap">
+      <div class="quiz-progress-row">
+        <span id="quiz-progress-label" class="quiz-progress-label">Question 1 of 12</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+
+      <div class="quiz-card">
+        <span class="quiz-topic" id="quiz-topic">Topic</span>
+        <h2 class="quiz-question" id="quiz-question">Question text</h2>
+        <div class="quiz-answer-area" id="quiz-answer-area"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-primary btn-large" id="next-question-btn" disabled>Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS ===================== -->
+  <section class="view" id="view-results" hidden>
+    <div class="results-head">
+      <div class="score-ring" id="score-ring">
+        <span id="score-fraction">0/0</span>
+      </div>
+      <h1 id="results-title">Nice work!</h1>
+      <p class="page-sub" id="results-sub">Here's how you did.</p>
+    </div>
+
+    <div id="results-perfect" class="results-perfect" hidden>
+      <p>You got every question right. There's nothing to review this round.</p>
+    </div>
+
+    <div id="results-review" class="results-review" hidden>
+      <h2>Review by topic</h2>
+      <div id="topic-groups"></div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn btn-secondary" id="start-over-btn">Upload new material</button>
+      <button class="btn btn-primary btn-large" id="retest-btn" hidden>Retest My Weak Areas</button>
+    </div>
+
+    <p class="save-status" id="save-status" hidden></p>
+  </section>
+
+  <!-- ===================== HISTORY ===================== -->
+  <section class="view" id="view-history" hidden>
+    <div class="page-head">
+      <h1>My tests</h1>
+      <p class="page-sub">Scores from tests you've taken while signed in.</p>
+    </div>
+    <div id="history-empty" class="results-perfect" hidden>
+      <p>No saved tests yet. Sign in, then finish a test — it'll show up here.</p>
+    </div>
+    <div id="history-list" class="history-list"></div>
+    <div class="upload-actions">
+      <button class="btn btn-secondary" id="history-back-btn">Back</button>
+      <span></span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== API KEY MODAL ===================== -->
+<div class="modal-backdrop" id="settings-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <h2 id="modal-title">Gemini API key</h2>
+    <p class="page-sub">
+      Testly runs entirely in your browser and calls Google's Gemini API directly, so it
+      needs your own key. It's stored only in this browser's local storage — never sent
+      anywhere except to Google.
+    </p>
+    <label for="api-key-input" class="field-label">API key</label>
+    <input type="password" id="api-key-input" placeholder="AIza…" autocomplete="off" />
+    <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="modal-link">Get a free key from Google AI Studio ↗</a>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="modal-cancel">Cancel</button>
+      <button class="btn btn-primary" id="modal-save">Save key</button>
+    </div>
+  </div>
+</div>
+
+<script src="firebase-config.js"></script>
+<script type="module" src="firebase-init.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
